@@ -1,0 +1,13 @@
+supplier_id,supplier_name,region,supplier_type,reliability_tier,lifecycle_state
+SUP-0001,Coromandel Distributors,Tamil Nadu,national,B,active
+SUP-0002,Nilgiri Traders,Karnataka,local,A,active
+SUP-0003,Satpura Wholesale,Karnataka,regional,B,active
+SUP-0004,Western Ghats FMCG,Maharashtra,national,B,active
+SUP-0005,Krishna Logistics,Tamil Nadu,local,B,active
+SUP-0006,Satpura Logistics,Andhra Pradesh,national,B,active
+SUP-0007,Godavari Agro Foods,Kerala,national,C,active
+SUP-0008,Vindhya FMCG,Telangana,local,A,active
+SUP-0009,Western Ghats Wholesale,Kerala,regional,B,active
+SUP-0010,Krishna Logistics,Tamil Nadu,regional,B,active
+SUP-0011,Satpura Supply Co,Karnataka,national,C,active
+SUP-0012,Coromandel Distributors,Tamil Nadu,local,A,active

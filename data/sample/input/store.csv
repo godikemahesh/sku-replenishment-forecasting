@@ -1,0 +1,11 @@
+store_id,store_name,city,region,store_format,open_date,storage_capacity_units,lifecycle_state
+STORE-000001,Visakhapatnam Main Bazaar,Visakhapatnam,Andhra Pradesh,supermarket,2017-11-26,2500,active
+STORE-000002,Nagpur River Front,Nagpur,Maharashtra,supermarket,2021-09-09,1600,active
+STORE-000003,Kochi Central,Kochi,Kerala,express,2025-01-23,450,active
+STORE-000004,Warangal Lake View,Warangal,Telangana,express,2021-07-06,450,active
+STORE-000005,Coimbatore Old Town,Coimbatore,Tamil Nadu,express,2018-11-29,650,active
+STORE-000006,Secunderabad Lake View,Secunderabad,Telangana,hypermarket,2025-03-05,7550,active
+STORE-000007,Hyderabad Airport Road,Hyderabad,Telangana,express,2018-08-14,400,active
+STORE-000008,Visakhapatnam Tech Park,Visakhapatnam,Andhra Pradesh,supermarket,2021-07-09,2400,active
+STORE-000009,Secunderabad Hill Side,Secunderabad,Telangana,express,2017-10-22,500,active
+STORE-000010,Warangal Airport Road,Warangal,Telangana,supermarket,2018-10-26,2050,active

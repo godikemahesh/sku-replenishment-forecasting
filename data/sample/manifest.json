@@ -1,0 +1,291 @@
+{
+  "dataset": "SKU-location demand forecasting & replenishment (synthetic)",
+  "generator_version": "1.0.0",
+  "profile": "sample",
+  "seed": 20261022,
+  "command": "python main.py run --profile sample",
+  "scale": {
+    "skus": 100,
+    "stores": 10,
+    "suppliers": 12,
+    "history_days": 30
+  },
+  "dates": {
+    "history_start": "2025-12-02",
+    "history_end": "2025-12-31",
+    "backtest_origin": "2025-12-24",
+    "holdout_days": 7,
+    "forecast_month": "2026-01",
+    "recommendation_date": "2026-01-01"
+  },
+  "parameters": {
+    "generator": {
+      "burn_in_days": 35,
+      "new_launch_rate": 0.05,
+      "discontinue_rate": 0.03,
+      "secondary_supplier_rate": 0.3,
+      "supplier_link_end_rate": 0.02,
+      "new_store_rate": 0.03,
+      "promo_never_rate": 0.3,
+      "promo_mean_gap_days": 45,
+      "promo_participation": 0.9,
+      "shrink_daily_prob": 0.004,
+      "delay_prob_by_tier": {
+        "A": 0.04,
+        "B": 0.1,
+        "C": 0.22
+      },
+      "disruption_delay_prob": 0.85
+    },
+    "engine": {
+      "service_level_by_abc": {
+        "A": 0.98,
+        "B": 0.95,
+        "C": 0.9
+      },
+      "abc_cutoffs": [
+        0.8,
+        0.95
+      ],
+      "ewma_half_life_days": 14,
+      "level_window_days": 56,
+      "croston_alpha": 0.1,
+      "new_item_days": 21,
+      "new_item_prior_weight_days": 7,
+      "min_lt_observations": 3,
+      "lt_lookback_days": 180
+    },
+    "anomalies": {
+      "negative_lead_time": {
+        "rate": 0.002,
+        "min": 3
+      },
+      "forecast_future_leakage": {
+        "rate": 0.005,
+        "min": 3
+      },
+      "forecast_stockout_as_zero_demand": {
+        "rate": 0.005,
+        "min": 3
+      },
+      "reorder_qty_ignores_pack_size": {
+        "rate": 0.01,
+        "min": 3
+      },
+      "discontinued_sku_recommended": {
+        "rate": 0.25,
+        "min": 2
+      }
+    },
+    "review_period_days": 7
+  },
+  "provenance": {
+    "source": "100% synthetic - produced by this repository's generator from a fixed seed",
+    "external_data": "none",
+    "personal_data": "none",
+    "reference_only": "Category seasonality and festival dates are hand-set to resemble Indian grocery retail; no third-party dataset was copied. Store, brand and supplier names are invented."
+  },
+  "exports": {
+    "csv_only_tables": [],
+    "row_limit": 500000
+  },
+  "files": {
+    "docs/data_dictionary.csv": {
+      "bytes": 23304,
+      "sha256": "0ffe3b2b282c2dad2d923258f62edcb4a2a114d7c7e564e571b8b1ed4fbf42cd",
+      "rows": 188
+    },
+    "docs/data_dictionary.md": {
+      "bytes": 22709,
+      "sha256": "4a4004eaecbde91a118a5769977525664c643cb5c865798520b4a8bf85cf6a87"
+    },
+    "docs/relationships.csv": {
+      "bytes": 1775,
+      "sha256": "ac8348f24f275fba2fae58a8ca0b66a9a80480da32c9d4d9e20f7a8e52b5ccec",
+      "rows": 31
+    },
+    "ground_truth/demand_actuals.csv": {
+      "bytes": 297290,
+      "sha256": "d3c099cb9ee0c911175e321c0c2838b75258ea0b4e03d98943e3e72ba852de3f",
+      "rows": 7812
+    },
+    "ground_truth/demand_profile.csv": {
+      "bytes": 13285,
+      "sha256": "5b791705622b45fe4ee8d63a91451d4365710138d6eac726fa6df83ceb9c884a",
+      "rows": 252
+    },
+    "ground_truth/ground_truth.csv": {
+      "bytes": 42303,
+      "sha256": "a1173269b3595328e23e513a7d367d415337b72bac825715282ddbc1eacd044d",
+      "rows": 195
+    },
+    "ground_truth/supplier_disruption.csv": {
+      "bytes": 65,
+      "sha256": "9a03c9993bb002b7a5a288c21935b9988352e86dc8899f78fb417501e2a36bff",
+      "rows": 1
+    },
+    "input/inventory_snapshot.csv": {
+      "bytes": 689315,
+      "sha256": "a3e00efb0feccc8dc6d6ea433a863c5ac8710ece8cf5675c0334d1460211f24c",
+      "rows": 7403
+    },
+    "input/lead_time_observation.csv": {
+      "bytes": 58788,
+      "sha256": "7efbca55d68eaa8a25cb91d8fd41a8ff74d0931e29deb089b1e30f138982d541",
+      "rows": 626
+    },
+    "input/purchase_order.csv": {
+      "bytes": 92988,
+      "sha256": "3c2a25f45fb7fafb8824cd5c8b24d80946c7b58df3c8d7c710d72bf0d1a29678",
+      "rows": 756
+    },
+    "input/purchase_order_event.csv": {
+      "bytes": 90954,
+      "sha256": "90084af8c7abbbb19de0dded98e4af757b8770d8519d6a86131647ed22c54471",
+      "rows": 1589
+    },
+    "input/sales_history.csv": {
+      "bytes": 858223,
+      "sha256": "0d188baeb61e29653963809b692a2704f1347aa9a002269626d0f33a1a50449b",
+      "rows": 7403
+    },
+    "input/sku.csv": {
+      "bytes": 8835,
+      "sha256": "d3d696cd2bff0a893eecdb3ce23c21ce2fd1059a4cc78db42cab4a72850e4513",
+      "rows": 100
+    },
+    "input/sku_store_matrix.csv": {
+      "bytes": 39599,
+      "sha256": "45c0a2f917187b6dbe43ec87be18a44d910453f5187a789dcc1525e3d9fd8deb",
+      "rows": 1000
+    },
+    "input/store.csv": {
+      "bytes": 989,
+      "sha256": "05bf77fda355068ab884581c5c771605b9fa89e937268a544beedc9cd2ef5d8a",
+      "rows": 10
+    },
+    "input/supplier.csv": {
+      "bytes": 760,
+      "sha256": "87003778315e35a261424fb243bc86cc3fa874ec613eb980e44468db7b4d26f3",
+      "rows": 12
+    },
+    "input/supplier_sku.csv": {
+      "bytes": 7958,
+      "sha256": "0fb67e56a881f99eb22ac93733d27f15f667d45fe043692b4dca18dec8e56619",
+      "rows": 123
+    },
+    "json/ground_truth/demand_actuals.json": {
+      "bytes": 898769,
+      "sha256": "51fc239cf908e2b322eab5d32bb4cf4215fa5674b12c4cad6dd9fec1f0444267"
+    },
+    "json/ground_truth/demand_profile.json": {
+      "bytes": 45957,
+      "sha256": "444fe290f153609d47667b67e8541bb3c8e0e5507239c764d7eca63313398306"
+    },
+    "json/ground_truth/ground_truth.json": {
+      "bytes": 76703,
+      "sha256": "96868ce7d706059f8e595ad669625d47211d10066debef8730aeb3f6880f8ed9"
+    },
+    "json/ground_truth/supplier_disruption.json": {
+      "bytes": 92,
+      "sha256": "89d3e3457bffd2b4d636c9c62db006c0c8e845291a3b465186f3f4ad37cc86b0"
+    },
+    "json/input/inventory_snapshot.json": {
+      "bytes": 2436256,
+      "sha256": "2483bd8b38b2d8b9a0aaea8ee2ffb44b610e6d0e9a9edb2227b2c929d371f31a"
+    },
+    "json/input/lead_time_observation.json": {
+      "bytes": 184483,
+      "sha256": "b6072d88e7e11ff94287aadd731b9e913bdcd25828fe03118c4da10bdf9dc796"
+    },
+    "json/input/purchase_order.json": {
+      "bytes": 273779,
+      "sha256": "84e9aac93041dff5cd01a09a5991d45d510abec8615cc1b7b8985b0a5c169530"
+    },
+    "json/input/purchase_order_event.json": {
+      "bytes": 233913,
+      "sha256": "312ed6ff68bb7f9c9fffe0a44e9a4e5f155ff9c460826dddeaca53024dd3f9d6"
+    },
+    "json/input/sales_history.json": {
+      "bytes": 2434922,
+      "sha256": "73b0112f90a2eee9f86a95794012bb3087361ba9fd02395eea885c6f41533717"
+    },
+    "json/input/sku.json": {
+      "bytes": 25033,
+      "sha256": "8b8c779e66bb786ace121d9eb6b1ecf480cd92d1d9906f3581d37961b070dd12"
+    },
+    "json/input/sku_store_matrix.json": {
+      "bytes": 139040,
+      "sha256": "24ac801a408f2567219e120389ec13d30cf10da47a1b9ea43de114abd70b3ec6"
+    },
+    "json/input/store.json": {
+      "bytes": 2426,
+      "sha256": "f65ec738180ac6751fcb7f55547907aff4d7412fffb16b454d5b96fbdd3f4058"
+    },
+    "json/input/supplier.json": {
+      "bytes": 2205,
+      "sha256": "a46d03cc03e12219eaf350a4abecae853e62760389bd651a8ac45196617233a7"
+    },
+    "json/input/supplier_sku.json": {
+      "bytes": 34013,
+      "sha256": "f089e6150754d6c71bc09ab0f9efe96bf506834dd39f124e1cf42b2fbccbfc60"
+    },
+    "json/output/audit_exception.json": {
+      "bytes": 13773,
+      "sha256": "61b822362cb272969b9df634a26443aed9105fbdff59f1d635a512a71f95e83f"
+    },
+    "json/output/forecast.json": {
+      "bytes": 335085,
+      "sha256": "15d9dfb5d0b85c46b9beb1e0a52179749c50baceb60b15224da85a233b02d6e3"
+    },
+    "json/output/purchase_recommendation.json": {
+      "bytes": 238491,
+      "sha256": "e7738024bc288d21f27da4772f80583233fe874f667fbcecffb3e66ddc5c36e8"
+    },
+    "json/output/reorder_policy.json": {
+      "bytes": 176527,
+      "sha256": "6dbcde5ab115a45c4fc5aaa8ca9db583ddbac87ddd5efb41bfae9f3bf080dd6c"
+    },
+    "output/audit_exception.csv": {
+      "bytes": 6652,
+      "sha256": "b146e555942368fd80a049ced7f106d7d5b1006e782814d965a445e5bbe14049",
+      "rows": 41
+    },
+    "output/forecast.csv": {
+      "bytes": 97036,
+      "sha256": "ee4810d896d22c9cb923eb3f3b7957aafc05bbe20abae4ca9b0547db838965f6",
+      "rows": 504
+    },
+    "output/purchase_recommendation.csv": {
+      "bytes": 86525,
+      "sha256": "a5041c8dd53d1e8ff0133b24695b9f501f470d52a43f33c8ccb5f80aae675df9",
+      "rows": 252
+    },
+    "output/reorder_policy.csv": {
+      "bytes": 52891,
+      "sha256": "b93b4b630494bb52cb43f887cea0f6472ded7240ff1a1c9781aba562b95d3807",
+      "rows": 252
+    },
+    "reports/evaluation.json": {
+      "bytes": 8507,
+      "sha256": "32e70262bac7074c088aa69b5d3b1c3d33378598f619373cae21147e65aa1fb8"
+    },
+    "reports/evaluation.md": {
+      "bytes": 13974,
+      "sha256": "51e8720910e3651b06078ac65c17f1eb4426abba1b29f98f1c7a5d620691bba7"
+    },
+    "reports/validation_summary.csv": {
+      "bytes": 12254,
+      "sha256": "560ec50ca4ae5d35da9c8c9734d3334eb08ffe7e5f7ced458db3f6b4eef1762c",
+      "rows": 131
+    },
+    "sql/schema.sql": {
+      "bytes": 13219,
+      "sha256": "39e8b51569e79838432fd68e739631694c794a0b32bb14cb071e7b9a44504a1f"
+    },
+    "sql/seed.sql": {
+      "bytes": 2919208,
+      "sha256": "e37f628773447bd8d07960637a51877829af2ce7a74485f5d2386b04d205d1c6"
+    }
+  }
+}

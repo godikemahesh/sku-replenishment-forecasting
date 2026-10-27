@@ -1,0 +1,42 @@
+exception_id,exception_category,rule_id,entity_type,entity_id,store_id,sku_id,severity,action,detail
+EXC-00000001,data_defect,FC01,forecast,FC-STORE-000006-SKU-000037-2025-12,STORE-000006,SKU-000037,high,quarantine,trained through 2025-12-31 but origin is 2025-12-24
+EXC-00000002,data_defect,FC01,forecast,FC-STORE-000010-SKU-000037-2025-12,STORE-000010,SKU-000037,high,quarantine,trained through 2025-12-31 but origin is 2025-12-24
+EXC-00000003,data_defect,FC01,forecast,FC-STORE-000010-SKU-000100-2025-12,STORE-000010,SKU-000100,high,quarantine,trained through 2025-12-31 but origin is 2025-12-24
+EXC-00000004,data_defect,FC02,forecast,FC-STORE-000005-SKU-000029-2025-12,STORE-000005,SKU-000029,high,quarantine,2 stockout days in training window but only 0 excluded - censored sales treated as demand
+EXC-00000005,data_defect,FC02,forecast,FC-STORE-000006-SKU-000060-2025-12,STORE-000006,SKU-000060,high,quarantine,10 stockout days in training window but only 0 excluded - censored sales treated as demand
+EXC-00000006,data_defect,FC02,forecast,FC-STORE-000008-SKU-000096-2025-12,STORE-000008,SKU-000096,high,quarantine,2 stockout days in training window but only 0 excluded - censored sales treated as demand
+EXC-00000007,data_defect,LT01,lead_time_observation,LTO-2025-000345,STORE-000006,SKU-000087,high,quarantine,lead_time_days=-2 (receipt before order); excluded from lead-time statistics
+EXC-00000008,data_defect,LT01,lead_time_observation,LTO-2025-000508,STORE-000010,SKU-000072,high,quarantine,lead_time_days=-3 (receipt before order); excluded from lead-time statistics
+EXC-00000009,data_defect,LT01,lead_time_observation,LTO-2025-000584,STORE-000001,SKU-000037,high,quarantine,lead_time_days=-1 (receipt before order); excluded from lead-time statistics
+EXC-00000010,data_defect,PR01,purchase_recommendation,PO-2026-000015,STORE-000001,SKU-000045,high,block,qty 20 not a multiple of pack 12
+EXC-00000011,data_defect,PR01,purchase_recommendation,PO-2026-000022,STORE-000001,SKU-000064,high,block,qty 10 not a multiple of pack 8
+EXC-00000012,data_defect,PR01,purchase_recommendation,PO-2026-000244,STORE-000010,SKU-000072,high,block,qty 175 not a multiple of pack 48
+EXC-00000013,data_defect,PR03,purchase_recommendation,PO-2026-000097,STORE-000005,SKU-000063,high,block,positive order for discontinued SKU SKU-000063
+EXC-00000014,data_defect,PR03,purchase_recommendation,PO-2026-000101,STORE-000005,SKU-000088,high,block,positive order for discontinued SKU SKU-000088
+EXC-00000015,operational,OP01,purchase_recommendation,PO-2026-000206,STORE-000009,SKU-000003,high,manual_review,reorder triggered but store capacity has no room for one MOQ
+EXC-00000016,operational,OP01,purchase_recommendation,PO-2026-000207,STORE-000009,SKU-000005,high,manual_review,reorder triggered but store capacity has no room for one MOQ
+EXC-00000017,operational,OP03,purchase_recommendation,PO-2026-000019,STORE-000001,SKU-000058,high,manual_review,SKU needs stock but has no active supplier contract
+EXC-00000018,operational,OP03,purchase_recommendation,PO-2026-000052,STORE-000002,SKU-000058,high,manual_review,SKU needs stock but has no active supplier contract
+EXC-00000019,operational,OP03,purchase_recommendation,PO-2026-000080,STORE-000004,SKU-000058,high,manual_review,SKU needs stock but has no active supplier contract
+EXC-00000020,operational,OP03,purchase_recommendation,PO-2026-000241,STORE-000010,SKU-000058,high,manual_review,SKU needs stock but has no active supplier contract
+EXC-00000021,operational,OP04,purchase_recommendation,PO-2026-000043,STORE-000002,SKU-000044,low,manual_review,low-confidence inputs: new_item_shrinkage / supplier_history
+EXC-00000022,operational,OP04,purchase_recommendation,PO-2026-000072,STORE-000003,SKU-000093,low,manual_review,low-confidence inputs: new_item_shrinkage / supplier_sku_history
+EXC-00000023,operational,OP04,purchase_recommendation,PO-2026-000177,STORE-000007,SKU-000093,low,manual_review,low-confidence inputs: new_item_shrinkage / supplier_sku_history
+EXC-00000024,operational,OP04,purchase_recommendation,PO-2026-000189,STORE-000008,SKU-000044,low,manual_review,low-confidence inputs: new_item_shrinkage / supplier_history
+EXC-00000025,operational,OP04,purchase_recommendation,PO-2026-000251,STORE-000010,SKU-000093,low,manual_review,low-confidence inputs: new_item_shrinkage / supplier_sku_history
+EXC-00000026,operational,OP05,purchase_order,PO-2025-000260,STORE-000006,SKU-000047,medium,expedite,open PO past expected receipt 2025-12-19
+EXC-00000027,operational,OP05,purchase_order,PO-2025-000367,STORE-000008,SKU-000046,medium,expedite,open PO past expected receipt 2025-12-23
+EXC-00000028,operational,OP05,purchase_order,PO-2025-000439,STORE-000008,SKU-000011,medium,expedite,open PO past expected receipt 2025-12-27
+EXC-00000029,operational,OP05,purchase_order,PO-2025-000531,STORE-000005,SKU-000002,medium,expedite,open PO past expected receipt 2025-12-24
+EXC-00000030,operational,OP05,purchase_order,PO-2025-000585,STORE-000001,SKU-000045,medium,expedite,open PO past expected receipt 2025-12-25
+EXC-00000031,operational,OP05,purchase_order,PO-2025-000586,STORE-000002,SKU-000045,medium,expedite,open PO past expected receipt 2025-12-25
+EXC-00000032,operational,OP05,purchase_order,PO-2025-000587,STORE-000002,SKU-000055,medium,expedite,open PO past expected receipt 2025-12-24
+EXC-00000033,operational,OP05,purchase_order,PO-2025-000588,STORE-000002,SKU-000056,medium,expedite,open PO past expected receipt 2025-12-26
+EXC-00000034,operational,OP05,purchase_order,PO-2025-000591,STORE-000006,SKU-000037,medium,expedite,open PO past expected receipt 2025-12-25
+EXC-00000035,operational,OP05,purchase_order,PO-2025-000592,STORE-000006,SKU-000055,medium,expedite,open PO past expected receipt 2025-12-24
+EXC-00000036,operational,OP05,purchase_order,PO-2025-000593,STORE-000006,SKU-000074,medium,expedite,open PO past expected receipt 2025-12-24
+EXC-00000037,operational,OP05,purchase_order,PO-2025-000595,STORE-000007,SKU-000055,medium,expedite,open PO past expected receipt 2025-12-24
+EXC-00000038,operational,OP05,purchase_order,PO-2025-000599,STORE-000010,SKU-000037,medium,expedite,open PO past expected receipt 2025-12-25
+EXC-00000039,operational,OP05,purchase_order,PO-2025-000619,STORE-000007,SKU-000041,medium,expedite,open PO past expected receipt 2025-12-30
+EXC-00000040,operational,OP05,purchase_order,PO-2025-000621,STORE-000010,SKU-000028,medium,expedite,open PO past expected receipt 2025-12-30
+EXC-00000041,operational,OP05,purchase_order,PO-2025-000668,STORE-000002,SKU-000076,medium,expedite,open PO past expected receipt 2025-12-28

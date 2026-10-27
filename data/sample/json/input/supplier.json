@@ -1,0 +1,98 @@
+[
+ {
+  "supplier_id":"SUP-0001",
+  "supplier_name":"Coromandel Distributors",
+  "region":"Tamil Nadu",
+  "supplier_type":"national",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0002",
+  "supplier_name":"Nilgiri Traders",
+  "region":"Karnataka",
+  "supplier_type":"local",
+  "reliability_tier":"A",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0003",
+  "supplier_name":"Satpura Wholesale",
+  "region":"Karnataka",
+  "supplier_type":"regional",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0004",
+  "supplier_name":"Western Ghats FMCG",
+  "region":"Maharashtra",
+  "supplier_type":"national",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0005",
+  "supplier_name":"Krishna Logistics",
+  "region":"Tamil Nadu",
+  "supplier_type":"local",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0006",
+  "supplier_name":"Satpura Logistics",
+  "region":"Andhra Pradesh",
+  "supplier_type":"national",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0007",
+  "supplier_name":"Godavari Agro Foods",
+  "region":"Kerala",
+  "supplier_type":"national",
+  "reliability_tier":"C",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0008",
+  "supplier_name":"Vindhya FMCG",
+  "region":"Telangana",
+  "supplier_type":"local",
+  "reliability_tier":"A",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0009",
+  "supplier_name":"Western Ghats Wholesale",
+  "region":"Kerala",
+  "supplier_type":"regional",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0010",
+  "supplier_name":"Krishna Logistics",
+  "region":"Tamil Nadu",
+  "supplier_type":"regional",
+  "reliability_tier":"B",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0011",
+  "supplier_name":"Satpura Supply Co",
+  "region":"Karnataka",
+  "supplier_type":"national",
+  "reliability_tier":"C",
+  "lifecycle_state":"active"
+ },
+ {
+  "supplier_id":"SUP-0012",
+  "supplier_name":"Coromandel Distributors",
+  "region":"Tamil Nadu",
+  "supplier_type":"local",
+  "reliability_tier":"A",
+  "lifecycle_state":"active"
+ }
+]

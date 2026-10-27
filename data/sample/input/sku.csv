@@ -1,0 +1,101 @@
+sku_id,sku_name,category,brand,unit_cost,unit_price,launch_date,discontinue_date,lifecycle_state
+SKU-000001,Coastline Cola 1L,Beverages,Coastline,46.56,57.48,2022-09-19,,active
+SKU-000002,HappyHarvest Body Lotion 75g,Personal Care,HappyHarvest,126.95,173.54,2021-06-23,,active
+SKU-000003,PureFarm Corn Flakes 70g,Packaged Food,PureFarm,90.23,114.51,2025-12-10,,new_launch
+SKU-000004,Coastline Toned Milk 1L,Dairy,Coastline,43.74,57.23,2020-12-07,,active
+SKU-000005,GreenLeaf Wheat Atta 1kg,Staples,GreenLeaf,69.74,90.24,2023-03-24,,active
+SKU-000006,Annapurna Potato Chips 150g,Snacks,Annapurna,18.46,25.78,2024-04-19,,active
+SKU-000007,Annapurna Filter Coffee 2L,Beverages,Annapurna,35.04,45.65,2025-12-09,,new_launch
+SKU-000008,HappyHarvest Curd 1L,Dairy,HappyHarvest,42.07,48.93,2023-10-02,,active
+SKU-000009,Swasthya Frozen Paratha 500ml,Frozen,Swasthya,92.52,140.79,2021-01-30,,active
+SKU-000010,Kaveri Potato Chips 50g,Snacks,Kaveri,35.54,51.59,2021-09-09,,active
+SKU-000011,Coastline Cheese Slices 1L,Dairy,Coastline,19.76,24.43,2024-05-25,,active
+SKU-000012,Annapurna Basmati Rice 500g,Staples,Annapurna,73.29,115.92,2025-01-27,,active
+SKU-000013,DailyChoice Bath Soap 400ml,Personal Care,DailyChoice,92.78,118.2,2020-07-21,,active
+SKU-000014,Kaveri Ready Upma Mix 70g,Packaged Food,Kaveri,42.61,50.96,2020-05-21,,active
+SKU-000015,Godavari Hair Oil 180ml,Personal Care,Godavari,66.59,77.01,2024-03-13,,active
+SKU-000016,PureFarm Sooji 1kg,Staples,PureFarm,62.4,73.63,2023-08-30,,active
+SKU-000017,UrbanNest Instant Noodles 70g,Packaged Food,UrbanNest,48.51,58.01,2023-11-29,,active
+SKU-000018,Tulsi Tomato Ketchup 300g,Packaged Food,Tulsi,71.52,103.41,2024-10-09,,active
+SKU-000019,Sunrise Bath Soap 75g,Personal Care,Sunrise,34.3,50.21,2019-07-17,,active
+SKU-000020,Nirmal Pasta 300g,Packaged Food,Nirmal,49.71,75.87,2024-07-07,,active
+SKU-000021,GreenLeaf Wheat Atta 5kg,Staples,GreenLeaf,58.33,88.02,2023-12-08,,active
+SKU-000022,GreenLeaf Mango Drink 2L,Beverages,GreenLeaf,31.54,41.47,2019-09-21,,active
+SKU-000023,Godavari Toothpaste 400ml,Personal Care,Godavari,82.6,117.28,2025-02-11,,active
+SKU-000024,GreenLeaf Dishwash Bar 2L,Household,GreenLeaf,176.01,274.09,2024-07-16,,active
+SKU-000025,UrbanNest Namkeen Mix 150g,Snacks,UrbanNest,17.19,26.81,2024-08-07,,active
+SKU-000026,Coastline Cream Biscuits 150g,Snacks,Coastline,23.49,27.49,2021-07-09,,active
+SKU-000027,DailyChoice Face Wash 75g,Personal Care,DailyChoice,46.35,58.08,2021-06-23,,active
+SKU-000028,Godavari Tomato Ketchup 70g,Packaged Food,Godavari,125.34,154.1,2022-07-15,,active
+SKU-000029,Vasant Iodised Salt 1kg,Staples,Vasant,40.79,49.26,2022-11-10,,active
+SKU-000030,DailyChoice Green Tea 1L,Beverages,DailyChoice,55.24,67.67,2025-12-10,,new_launch
+SKU-000031,Kaveri Tomato Ketchup 1kg,Packaged Food,Kaveri,62.04,76.52,2023-09-21,,active
+SKU-000032,PureFarm Lemon Soda 250ml,Beverages,PureFarm,93.51,121.76,2019-07-10,,active
+SKU-000033,Coastline Namkeen Mix 150g,Snacks,Coastline,16.46,20.19,2022-09-03,,active
+SKU-000034,UrbanNest Cola 1L,Beverages,UrbanNest,31.2,47.94,2023-02-18,,active
+SKU-000035,Annapurna Packaged Water 2L,Beverages,Annapurna,56.92,82.96,2023-11-20,,active
+SKU-000036,Tulsi Moong Dal 5kg,Staples,Tulsi,40.74,58.72,2019-06-23,,active
+SKU-000037,Sunrise Pasta 70g,Packaged Food,Sunrise,23.17,32.23,2021-06-20,,active
+SKU-000038,Nirmal Sooji 500g,Staples,Nirmal,114.32,173.16,2019-01-29,,active
+SKU-000039,Kaveri Roasted Peanuts 50g,Snacks,Kaveri,21.33,28.41,2019-06-01,,active
+SKU-000040,PureFarm Garbage Bags 2L,Household,PureFarm,176.05,248.04,2019-03-16,,active
+SKU-000041,Tulsi Toor Dal 5kg,Staples,Tulsi,90.88,134.03,2019-08-11,,active
+SKU-000042,HappyHarvest Lemon Soda 2L,Beverages,HappyHarvest,24.79,38.49,2020-05-11,,active
+SKU-000043,Coastline Sooji 500g,Staples,Coastline,97.66,147.3,2019-12-06,,active
+SKU-000044,DailyChoice Namkeen Mix 400g,Snacks,DailyChoice,31.32,47.31,2025-12-16,,new_launch
+SKU-000045,HappyHarvest Shampoo 400ml,Personal Care,HappyHarvest,121.62,161.4,2021-10-22,,active
+SKU-000046,GreenLeaf Cream Biscuits 150g,Snacks,GreenLeaf,17.88,24.06,2021-02-09,,active
+SKU-000047,Nirmal Face Wash 400ml,Personal Care,Nirmal,249.67,295.58,2021-07-12,,active
+SKU-000048,Swasthya Roasted Peanuts 50g,Snacks,Swasthya,9.04,11.69,2022-08-21,,active
+SKU-000049,UrbanNest Roasted Peanuts 400g,Snacks,UrbanNest,28.49,34.54,2020-09-23,,active
+SKU-000050,Kaveri Green Tea 250ml,Beverages,Kaveri,53.09,83.2,2022-02-07,2025-12-21,discontinued
+SKU-000051,Annapurna Toned Milk 200g,Dairy,Annapurna,51.63,77.5,2022-01-05,,active
+SKU-000052,Sunrise Paneer 200g,Dairy,Sunrise,72.45,108.44,2020-10-02,,active
+SKU-000053,Godavari Namkeen Mix 150g,Snacks,Godavari,55.58,64.71,2021-01-19,,active
+SKU-000054,PureFarm Veg Nuggets 400g,Frozen,PureFarm,52.85,77.69,2025-04-04,,active
+SKU-000055,Coastline Hair Oil 180ml,Personal Care,Coastline,129.96,181.25,2024-08-25,,active
+SKU-000056,PureFarm Bath Soap 180ml,Personal Care,PureFarm,57.05,73.11,2024-02-18,,active
+SKU-000057,HappyHarvest Toothpaste 75g,Personal Care,HappyHarvest,34.81,46.78,2024-09-07,,active
+SKU-000058,HappyHarvest Agarbatti 500g,Household,HappyHarvest,152.03,203.77,2022-05-12,,active
+SKU-000059,Kaveri Pasta 1kg,Packaged Food,Kaveri,54.77,73.9,2020-02-27,,active
+SKU-000060,Coastline Detergent Powder 1kg,Household,Coastline,237.54,299.37,2020-03-31,,active
+SKU-000061,Godavari Moong Dal 1kg,Staples,Godavari,152.97,218.11,2024-06-15,,active
+SKU-000062,UrbanNest Corn Flakes 1kg,Packaged Food,UrbanNest,97.33,117.55,2019-10-09,,active
+SKU-000063,BlueRiver Wheat Atta 500g,Staples,BlueRiver,64.98,86.74,2023-12-10,2025-12-22,discontinued
+SKU-000064,Godavari Pickle 1kg,Packaged Food,Godavari,50.79,58.47,2019-09-05,,active
+SKU-000065,Sunrise Potato Chips 400g,Snacks,Sunrise,15.61,21.94,2022-07-11,,active
+SKU-000066,Tulsi Packaged Water 250ml,Beverages,Tulsi,108.44,168.91,2022-02-07,,active
+SKU-000067,Annapurna Basmati Rice 500g,Staples,Annapurna,52.87,80.68,2020-08-21,,active
+SKU-000068,Swasthya Packaged Water 1L,Beverages,Swasthya,52.05,78.63,2022-01-13,,active
+SKU-000069,Shakti Garbage Bags 500g,Household,Shakti,110.71,143.23,2024-11-20,,active
+SKU-000070,Swasthya Butter 200g,Dairy,Swasthya,17.63,23.41,2019-12-31,,active
+SKU-000071,BlueRiver Potato Chips 150g,Snacks,BlueRiver,43.88,57.34,2020-11-10,,active
+SKU-000072,PureFarm Roasted Peanuts 50g,Snacks,PureFarm,9.4,11.74,2020-05-13,,active
+SKU-000073,HappyHarvest Ghee 200g,Dairy,HappyHarvest,40.59,49.28,2025-03-04,,active
+SKU-000074,Coastline Murukku 400g,Snacks,Coastline,20.46,24.71,2020-03-06,,active
+SKU-000075,Sunrise Ghee 200g,Dairy,Sunrise,73.96,105.93,2024-11-07,,active
+SKU-000076,Nirmal Sugar 5kg,Staples,Nirmal,53.31,80.15,2019-06-03,,active
+SKU-000077,Nirmal Dishwash Bar 1kg,Household,Nirmal,86.93,120.15,2020-02-04,,active
+SKU-000078,Coastline Instant Noodles 300g,Packaged Food,Coastline,61.47,89.59,2024-06-10,,active
+SKU-000079,Kaveri Instant Noodles 70g,Packaged Food,Kaveri,56.81,68.96,2019-06-09,,active
+SKU-000080,Swasthya Body Lotion 75g,Personal Care,Swasthya,68.89,93.34,2022-12-04,,active
+SKU-000081,Godavari Sooji 1kg,Staples,Godavari,100.19,122.76,2025-03-29,,active
+SKU-000082,Godavari Body Lotion 180ml,Personal Care,Godavari,51.05,75.33,2025-03-18,,active
+SKU-000083,Kaveri Ghee 200g,Dairy,Kaveri,68.92,91.83,2021-08-19,,active
+SKU-000084,Vasant Hair Oil 400ml,Personal Care,Vasant,57.66,78.56,2022-05-17,,active
+SKU-000085,GreenLeaf Toned Milk 500ml,Dairy,GreenLeaf,39.69,62.84,2024-09-16,,active
+SKU-000086,Shakti Lemon Soda 250ml,Beverages,Shakti,21.96,31.83,2023-04-27,,active
+SKU-000087,Kaveri Curd 500ml,Dairy,Kaveri,41.11,59.85,2022-12-08,,active
+SKU-000088,PureFarm Ghee 1L,Dairy,PureFarm,18.37,22.61,2024-03-15,2025-12-19,discontinued
+SKU-000089,Tulsi Potato Chips 50g,Snacks,Tulsi,10.8,12.7,2024-02-06,,active
+SKU-000090,Annapurna Sooji 5kg,Staples,Annapurna,59.55,78.76,2020-09-07,,active
+SKU-000091,Annapurna Toor Dal 500g,Staples,Annapurna,70.46,94.93,2021-09-27,,active
+SKU-000092,Shakti Cream Biscuits 150g,Snacks,Shakti,54.7,70.7,2021-08-23,,active
+SKU-000093,Sunrise Garbage Bags 1kg,Household,Sunrise,95.28,131.58,2025-12-22,,new_launch
+SKU-000094,Shakti Packaged Water 1L,Beverages,Shakti,54.49,70.87,2022-01-21,,active
+SKU-000095,GreenLeaf Potato Chips 400g,Snacks,GreenLeaf,23.62,34.29,2020-05-31,,active
+SKU-000096,BlueRiver Bath Soap 400ml,Personal Care,BlueRiver,84.5,110.34,2024-12-16,,active
+SKU-000097,UrbanNest Detergent Powder 1kg,Household,UrbanNest,115.03,156.48,2024-12-17,,active
+SKU-000098,Godavari Moong Dal 500g,Staples,Godavari,69.05,102.17,2024-12-07,,active
+SKU-000099,Tulsi Corn Flakes 70g,Packaged Food,Tulsi,40.24,51.34,2019-03-06,,active
+SKU-000100,Kaveri Paneer 200g,Dairy,Kaveri,41.64,50.66,2021-11-21,,active

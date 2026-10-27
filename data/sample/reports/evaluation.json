@@ -1,0 +1,324 @@
+{
+  "profile": "sample",
+  "seed": 20261022,
+  "backtest": {
+    "holdout": "2025-12-25..2025-12-31 (7 days, promotion days excluded)",
+    "target": "true (unconstrained) demand = observed sales on in-stock days + latent demand on stockout days",
+    "engine_censoring_aware": {
+      "n": 241,
+      "actual_units": 4089.0,
+      "forecast_units": 3935.5,
+      "wape": 0.3106,
+      "bias": -0.0375,
+      "mae_per_series": 5.269
+    },
+    "naive_last28_mean_incl_stockouts": {
+      "n": 241,
+      "actual_units": 4089.0,
+      "forecast_units": 3842.3,
+      "wape": 0.2857,
+      "bias": -0.0603,
+      "mae_per_series": 4.848
+    },
+    "series_with_3plus_stockout_days_in_last_28": {
+      "engine": {
+        "n": 27,
+        "actual_units": 305.0,
+        "forecast_units": 358.6,
+        "wape": 0.5041,
+        "bias": 0.1758,
+        "mae_per_series": 5.695
+      },
+      "naive": {
+        "n": 27,
+        "actual_units": 305.0,
+        "forecast_units": 286.4,
+        "wape": 0.3626,
+        "bias": -0.0609,
+        "mae_per_series": 4.096
+      }
+    },
+    "by_engine_demand_class": {
+      "erratic": {
+        "n": 25,
+        "actual_units": 1136.0,
+        "forecast_units": 1125.4,
+        "wape": 0.2878,
+        "bias": -0.0093,
+        "mae_per_series": 13.076
+      },
+      "intermittent": {
+        "n": 116,
+        "actual_units": 617.0,
+        "forecast_units": 592.0,
+        "wape": 0.5639,
+        "bias": -0.0405,
+        "mae_per_series": 3.0
+      },
+      "lumpy": {
+        "n": 13,
+        "actual_units": 210.0,
+        "forecast_units": 153.7,
+        "wape": 0.3767,
+        "bias": -0.2679,
+        "mae_per_series": 6.085
+      },
+      "new_item": {
+        "n": 14,
+        "actual_units": 156.0,
+        "forecast_units": 115.5,
+        "wape": 0.7857,
+        "bias": -0.2599,
+        "mae_per_series": 8.755
+      },
+      "smooth": {
+        "n": 73,
+        "actual_units": 1970.0,
+        "forecast_units": 1948.9,
+        "wape": 0.1997,
+        "bias": -0.0107,
+        "mae_per_series": 5.389
+      }
+    },
+    "by_true_demand_class": {
+      "erratic": {
+        "n": 29,
+        "actual_units": 1151.0,
+        "forecast_units": 1118.8,
+        "wape": 0.3036,
+        "bias": -0.028,
+        "mae_per_series": 12.048
+      },
+      "intermittent": {
+        "n": 121,
+        "actual_units": 662.0,
+        "forecast_units": 646.9,
+        "wape": 0.581,
+        "bias": -0.0229,
+        "mae_per_series": 3.179
+      },
+      "lumpy": {
+        "n": 15,
+        "actual_units": 147.0,
+        "forecast_units": 131.9,
+        "wape": 0.4734,
+        "bias": -0.1027,
+        "mae_per_series": 4.64
+      },
+      "no_demand": {
+        "n": 1,
+        "actual_units": 0.0,
+        "forecast_units": 0.0,
+        "wape": null,
+        "bias": null,
+        "mae_per_series": 0.0
+      },
+      "smooth": {
+        "n": 75,
+        "actual_units": 2129.0,
+        "forecast_units": 2038.0,
+        "wape": 0.219,
+        "bias": -0.0428,
+        "mae_per_series": 6.217
+      }
+    },
+    "injected_forecast_future_leakage": {
+      "defective": {
+        "n": 3,
+        "actual_units": 29.0,
+        "forecast_units": 21.5,
+        "wape": 0.2582,
+        "bias": -0.2582,
+        "mae_per_series": 2.496
+      },
+      "same_series_clean_engine": {
+        "n": 3,
+        "actual_units": 29.0,
+        "forecast_units": 19.3,
+        "wape": 0.3354,
+        "bias": -0.3354,
+        "mae_per_series": 3.242
+      }
+    },
+    "injected_forecast_stockout_as_zero_demand": {
+      "defective": {
+        "n": 3,
+        "actual_units": 20.0,
+        "forecast_units": 18.4,
+        "wape": 0.0928,
+        "bias": -0.0811,
+        "mae_per_series": 0.619
+      },
+      "same_series_clean_engine": {
+        "n": 3,
+        "actual_units": 20.0,
+        "forecast_units": 21.1,
+        "wape": 0.2581,
+        "bias": 0.0563,
+        "mae_per_series": 1.72
+      }
+    }
+  },
+  "production": {
+    "month": "2026-01",
+    "engine": {
+      "n": 252,
+      "actual_units": 19448.0,
+      "forecast_units": 19678.1,
+      "wape": 0.236,
+      "bias": 0.0118,
+      "mae_per_series": 18.211
+    },
+    "naive_last28_mean_incl_stockouts": {
+      "n": 252,
+      "actual_units": 19448.0,
+      "forecast_units": 19104.3,
+      "wape": 0.2162,
+      "bias": -0.0177,
+      "mae_per_series": 16.689
+    },
+    "by_method": {
+      "censored_ewma_dow": {
+        "n": 104,
+        "actual_units": 14953.0,
+        "forecast_units": 15669.0,
+        "wape": 0.2204,
+        "bias": 0.0479,
+        "mae_per_series": 31.689
+      },
+      "croston_sba": {
+        "n": 142,
+        "actual_units": 4307.0,
+        "forecast_units": 3921.9,
+        "wape": 0.2749,
+        "bias": -0.0894,
+        "mae_per_series": 8.338
+      },
+      "new_item_shrinkage": {
+        "n": 5,
+        "actual_units": 183.0,
+        "forecast_units": 87.2,
+        "wape": 0.5706,
+        "bias": -0.5236,
+        "mae_per_series": 20.885
+      },
+      "zero_demand": {
+        "n": 1,
+        "actual_units": 5.0,
+        "forecast_units": 0.0,
+        "wape": 1.0,
+        "bias": -1.0,
+        "mae_per_series": 5.0
+      }
+    },
+    "seasonal_index_used": false
+  },
+  "censoring": {
+    "sales_rows": 7403,
+    "stockout_flagged_rows": 314,
+    "truly_censored_rows": 181,
+    "recall": 1.0,
+    "precision": 0.5764,
+    "stockout_rate": 0.0424,
+    "zero_sales_in_stock_rows (true zero demand)": 2426,
+    "zero_sales_stockout_rows (censored, NOT zero demand)": 230,
+    "lost_units_on_censored_days": 523,
+    "note": "precision < 1 is expected: a shelf can be empty while demand was zero or exactly equal to stock - flagged as possibly censored, not truly censored"
+  },
+  "replenishment": {
+    "recommendation_date": "2026-01-01",
+    "lines": 252,
+    "status_counts": {
+      "no_order_needed": 188,
+      "order_recommended": 48,
+      "blocked_discontinued": 10,
+      "blocked_no_active_supplier": 4,
+      "capacity_exception": 2
+    },
+    "units_recommended": 1641,
+    "order_value_inr": 82802.85,
+    "manual_review_lines": 7,
+    "compliance": {
+      "pack_size": 1.0,
+      "moq": 1.0,
+      "capacity_ordering_stores_within_limit": 1.0,
+      "stores_already_over_capacity_without_orders": 1,
+      "discontinued_blocked": true
+    },
+    "store_capacity_utilisation_after_orders": {
+      "max": 1.104,
+      "median": 0.728
+    },
+    "forward_check_engine": {
+      "series": 238,
+      "coverage_rate": 0.8866,
+      "shortfall_units": 342,
+      "units_ordered": 1641,
+      "no_order_coverage_rate": 0.7815
+    },
+    "forward_check_naive_forecast_policy": {
+      "series": 238,
+      "coverage_rate": 0.8571,
+      "shortfall_units": 430,
+      "units_ordered": 772,
+      "no_order_coverage_rate": 0.7815
+    },
+    "forward_check_note": "coverage = share of orderable series whose inventory position after ordering >= true demand over L+R days of the forecast month"
+  },
+  "audit_detection": {
+    "by_issue": {
+      "negative_lead_time": {
+        "rule": "LT01",
+        "labelled": 3,
+        "flagged": 3,
+        "true_positive": 3,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "forecast_future_leakage": {
+        "rule": "FC01",
+        "labelled": 3,
+        "flagged": 3,
+        "true_positive": 3,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "forecast_stockout_as_zero_demand": {
+        "rule": "FC02",
+        "labelled": 3,
+        "flagged": 3,
+        "true_positive": 3,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "reorder_qty_ignores_pack_size": {
+        "rule": "PR01",
+        "labelled": 3,
+        "flagged": 3,
+        "true_positive": 3,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "discontinued_sku_recommended": {
+        "rule": "PR03",
+        "labelled": 2,
+        "flagged": 2,
+        "true_positive": 2,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "unexpected_defect_exceptions": 0,
+    "operational_exceptions": {
+      "OP05": 16,
+      "OP04": 5,
+      "OP03": 4,
+      "OP01": 2
+    }
+  },
+  "validation": {
+    "checks": 131,
+    "passed": 131,
+    "failed": []
+  }
+}

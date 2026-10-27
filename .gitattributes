@@ -1,0 +1,2 @@
+# Keep generated data byte-identical so manifest.json SHA-256 checksums verify after clone
+data/** -text

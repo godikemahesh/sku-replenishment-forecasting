@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Large generated profiles - regenerate with `python main.py run --profile dev|full`
+data/dev/
+data/full/
+data/*-custom/
+
+# Reference starter pack supplied with the brief (not part of this solution)
+inventory_forecasting_starter/

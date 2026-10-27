@@ -1,0 +1,132 @@
+check,category,table,status,rows_checked,violations,detail
+sku: required fields not null,completeness,sku,PASS,100,0,
+sku: enum values allowed,domain,sku,PASS,100,0,
+sku: ID pattern,identity,sku,PASS,100,0,
+sku: primary key unique,identity,sku,PASS,100,0,PK = sku_id
+store: required fields not null,completeness,store,PASS,10,0,
+store: enum values allowed,domain,store,PASS,10,0,
+store: ID pattern,identity,store,PASS,10,0,
+store: primary key unique,identity,store,PASS,10,0,PK = store_id
+supplier: required fields not null,completeness,supplier,PASS,12,0,
+supplier: enum values allowed,domain,supplier,PASS,12,0,
+supplier: ID pattern,identity,supplier,PASS,12,0,
+supplier: primary key unique,identity,supplier,PASS,12,0,PK = supplier_id
+supplier_sku: required fields not null,completeness,supplier_sku,PASS,123,0,
+supplier_sku: enum values allowed,domain,supplier_sku,PASS,123,0,
+supplier_sku: ID pattern,identity,supplier_sku,PASS,123,0,
+supplier_sku: primary key unique,identity,supplier_sku,PASS,123,0,PK = supplier_sku_id
+supplier_sku: foreign keys resolve,referential,supplier_sku,PASS,123,0,supplier_id->supplier; sku_id->sku
+sku_store_matrix: required fields not null,completeness,sku_store_matrix,PASS,1000,0,
+sku_store_matrix: enum values allowed,domain,sku_store_matrix,PASS,1000,0,
+sku_store_matrix: ID pattern,identity,sku_store_matrix,PASS,1000,0,
+sku_store_matrix: primary key unique,identity,sku_store_matrix,PASS,1000,0,"PK = sku_id, store_id"
+sku_store_matrix: foreign keys resolve,referential,sku_store_matrix,PASS,1000,0,sku_id->sku; store_id->store
+sales_history: required fields not null,completeness,sales_history,PASS,7403,0,
+sales_history: enum values allowed,domain,sales_history,PASS,7403,0,
+sales_history: ID pattern,identity,sales_history,PASS,7403,0,
+sales_history: primary key unique,identity,sales_history,PASS,7403,0,PK = sale_id
+sales_history: foreign keys resolve,referential,sales_history,PASS,7403,0,"store_id->store; sku_id->sku; sku_id,store_id->sku_store_matrix"
+inventory_snapshot: required fields not null,completeness,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: enum values allowed,domain,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: ID pattern,identity,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: primary key unique,identity,inventory_snapshot,PASS,7403,0,PK = inventory_snapshot_id
+inventory_snapshot: foreign keys resolve,referential,inventory_snapshot,PASS,7403,0,"store_id->store; sku_id->sku; sku_id,store_id->sku_store_matrix"
+purchase_order: required fields not null,completeness,purchase_order,PASS,756,0,
+purchase_order: enum values allowed,domain,purchase_order,PASS,756,0,
+purchase_order: ID pattern,identity,purchase_order,PASS,756,0,
+purchase_order: primary key unique,identity,purchase_order,PASS,756,0,PK = po_id
+purchase_order: foreign keys resolve,referential,purchase_order,PASS,756,0,store_id->store; sku_id->sku; supplier_id->supplier; supplier_sku_id->supplier_sku
+purchase_order_event: required fields not null,completeness,purchase_order_event,PASS,1589,0,
+purchase_order_event: enum values allowed,domain,purchase_order_event,PASS,1589,0,
+purchase_order_event: ID pattern,identity,purchase_order_event,PASS,1589,0,
+purchase_order_event: primary key unique,identity,purchase_order_event,PASS,1589,0,PK = event_id
+purchase_order_event: foreign keys resolve,referential,purchase_order_event,PASS,1589,0,po_id->purchase_order
+lead_time_observation: required fields not null,completeness,lead_time_observation,PASS,626,0,
+lead_time_observation: enum values allowed,domain,lead_time_observation,PASS,626,0,
+lead_time_observation: ID pattern,identity,lead_time_observation,PASS,626,0,
+lead_time_observation: primary key unique,identity,lead_time_observation,PASS,626,0,PK = lead_time_observation_id
+lead_time_observation: foreign keys resolve,referential,lead_time_observation,PASS,626,0,po_id->purchase_order; supplier_id->supplier; sku_id->sku; store_id->store
+forecast: required fields not null,completeness,forecast,PASS,504,0,
+forecast: enum values allowed,domain,forecast,PASS,504,0,
+forecast: ID pattern,identity,forecast,PASS,504,0,
+forecast: primary key unique,identity,forecast,PASS,504,0,PK = forecast_id
+forecast: foreign keys resolve,referential,forecast,PASS,504,0,store_id->store; sku_id->sku
+reorder_policy: required fields not null,completeness,reorder_policy,PASS,252,0,
+reorder_policy: enum values allowed,domain,reorder_policy,PASS,252,0,
+reorder_policy: ID pattern,identity,reorder_policy,PASS,252,0,
+reorder_policy: primary key unique,identity,reorder_policy,PASS,252,0,PK = reorder_policy_id
+reorder_policy: foreign keys resolve,referential,reorder_policy,PASS,252,0,store_id->store; sku_id->sku; forecast_id->forecast; supplier_sku_id->supplier_sku
+purchase_recommendation: required fields not null,completeness,purchase_recommendation,PASS,252,0,
+purchase_recommendation: enum values allowed,domain,purchase_recommendation,PASS,252,0,
+purchase_recommendation: ID pattern,identity,purchase_recommendation,PASS,252,0,
+purchase_recommendation: primary key unique,identity,purchase_recommendation,PASS,252,0,PK = purchase_recommendation_id
+purchase_recommendation: foreign keys resolve,referential,purchase_recommendation,PASS,252,0,store_id->store; sku_id->sku; reorder_policy_id->reorder_policy; forecast_id->forecast; supplier_id->supplier; supplier_sku_id->supplier_sku
+audit_exception: required fields not null,completeness,audit_exception,PASS,41,0,
+audit_exception: enum values allowed,domain,audit_exception,PASS,41,0,
+audit_exception: ID pattern,identity,audit_exception,PASS,41,0,
+audit_exception: primary key unique,identity,audit_exception,PASS,41,0,PK = exception_id
+ground_truth: required fields not null,completeness,ground_truth,PASS,195,0,
+ground_truth: enum values allowed,domain,ground_truth,PASS,195,0,
+ground_truth: ID pattern,identity,ground_truth,PASS,195,0,
+ground_truth: primary key unique,identity,ground_truth,PASS,195,0,PK = ground_truth_id
+demand_actuals: required fields not null,completeness,demand_actuals,PASS,7812,0,
+demand_actuals: enum values allowed,domain,demand_actuals,PASS,7812,0,
+demand_actuals: ID pattern,identity,demand_actuals,PASS,7812,0,
+demand_actuals: primary key unique,identity,demand_actuals,PASS,7812,0,"PK = store_id, sku_id, demand_date"
+demand_profile: required fields not null,completeness,demand_profile,PASS,252,0,
+demand_profile: enum values allowed,domain,demand_profile,PASS,252,0,
+demand_profile: ID pattern,identity,demand_profile,PASS,252,0,
+demand_profile: primary key unique,identity,demand_profile,PASS,252,0,"PK = store_id, sku_id"
+supplier_disruption: required fields not null,completeness,supplier_disruption,PASS,1,0,
+supplier_disruption: enum values allowed,domain,supplier_disruption,PASS,1,0,
+supplier_disruption: ID pattern,identity,supplier_disruption,PASS,1,0,
+supplier_disruption: primary key unique,identity,supplier_disruption,PASS,1,0,"PK = supplier_id, start_date"
+sku: unit_price > unit_cost,domain,sku,PASS,100,0,
+sku: discontinue_date >= launch_date,date_order,sku,PASS,100,0,
+sku: lifecycle_state consistent with dates,lifecycle,sku,PASS,100,0,
+supplier_sku: MOQ is a positive multiple of pack size,domain,supplier_sku,PASS,123,0,
+supplier_sku: effective_to >= effective_from,date_order,supplier_sku,PASS,123,0,
+supplier_sku: one contract per supplier x SKU,duplicates,supplier_sku,PASS,123,0,
+sku_store_matrix: complete SKU x store grid,completeness,sku_store_matrix,PASS,1000,0,
+sku_store_matrix: ranged_from >= launch and store open; null iff not_ranged,date_order,sku_store_matrix,PASS,1000,0,
+sku_store_matrix: phase_out/delisted only for discontinued SKUs,lifecycle,sku_store_matrix,PASS,1000,0,
+purchase_order: qty multiple of pack and >= MOQ,constraint,purchase_order,PASS,756,0,
+purchase_order: order_value = qty x unit_cost,arithmetic,purchase_order,PASS,756,0,
+purchase_order: expected_receipt = order_date + nominal lead time,arithmetic,purchase_order,PASS,756,0,
+purchase_order: status/actual date consistent and receipt >= order,lifecycle,purchase_order,PASS,756,0,
+purchase_order: ordered only while SKU orderable and contract effective,lifecycle,purchase_order,PASS,742,0,
+purchase_order_event: CREATED -> [DELAYED] -> RECEIVED sequence and dates,lifecycle,purchase_order_event,PASS,1589,0,
+lead_time_observation: 1:1 with received POs,referential,lead_time_observation,PASS,626,0,
+lead_time_observation: lead_time = receipt - order; delay = lead_time - nominal,arithmetic,lead_time_observation,PASS,626,0,
+lead_time_observation: lead_time_days >= 0,anomaly_isolation,lead_time_observation,PASS_LABELLED,626,3,"invalid values must be labelled | violations=3, labelled=3, ids match=True"
+lead_time_observation: receipt_date matches purchase_order,anomaly_isolation,lead_time_observation,PASS_LABELLED,626,3,"violations=3, labelled=3, ids match=True"
+sales_history/inventory_snapshot: IDs derived from natural key,identity,sales_history,PASS,7403,0,
+"sales_history = inventory_snapshot (same SKU-store-day, units_sold)",arithmetic,sales_history,PASS,7403,0,
+inventory_snapshot: closing = opening + receipts - sold + adjustment,arithmetic,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: opening = previous closing,arithmetic,inventory_snapshot,PASS,7403,0,
+"inventory_snapshot: quantities non-negative, adjustments <= 0",domain,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: receipts = POs received that day,arithmetic,inventory_snapshot,PASS,7403,0,
+inventory_snapshot: on_order = open PO quantity,arithmetic,inventory_snapshot,PASS,7403,0,
+sales_history: availability_status / stockout_flag derived from ledger,derived,sales_history,PASS,7403,0,
+sales_history: every truly censored day is flagged as stockout,censoring,sales_history,PASS,7403,0,
+sales_history: day_of_week matches sale_date,derived,sales_history,PASS,7403,0,
+sales_history: price paid = price x (1 - discount); promo flag consistent,arithmetic,sales_history,PASS,7403,0,
+sales_history: sales only while ranged and launched,lifecycle,sales_history,PASS,7403,0,
+forecast: horizon starts day after origin; horizon_days consistent,date_order,forecast,PASS,504,0,
+forecast: ID month = horizon start month,identity,forecast,PASS,504,0,
+forecast: horizon units = daily x days,arithmetic,forecast,PASS,504,0,
+forecast: no future data (training end <= origin),anomaly_isolation,forecast,PASS_LABELLED,504,3,"temporal holdout integrity | violations=3, labelled=3, ids match=True"
+forecast: all stockout days in training window excluded (censoring),anomaly_isolation,forecast,PASS_LABELLED,504,3,"stockout days recounted from sales_history | violations=3, labelled=3, ids match=True"
+reorder_policy: SS / ROP / order-up-to recompute exactly,arithmetic,reorder_policy,PASS,252,0,
+reorder_policy: demand equals linked production forecast,referential,reorder_policy,PASS,252,0,
+purchase_recommendation: IP = on_hand + on_order; trigger = IP <= ROP,arithmetic,purchase_recommendation,PASS,252,0,
+"purchase_recommendation: qty_after_moq_pack = ceil(max(need, MOQ)/pack)*pack",arithmetic,purchase_recommendation,PASS,252,0,
+purchase_recommendation: positive qty is a multiple of pack size,anomaly_isolation,purchase_recommendation,PASS_LABELLED,50,3,"violations=3, labelled=3, ids match=True"
+purchase_recommendation: positive qty >= MOQ,constraint,purchase_recommendation,PASS,50,0,
+purchase_recommendation: no positive qty for discontinued SKUs,anomaly_isolation,purchase_recommendation,PASS_LABELLED,252,2,"violations=2, labelled=2, ids match=True"
+purchase_recommendation: store IP + orders <= storage capacity,constraint,purchase_recommendation,PASS,10,0,
+purchase_recommendation: final qty <= qty after MOQ/pack (capacity only cuts),constraint,purchase_recommendation,PASS,252,0,
+purchase_recommendation: expected_receipt_date present iff qty > 0,lifecycle,purchase_recommendation,PASS,252,0,
+purchase_recommendation: ID sequence PO-<year>-###### contiguous,identity,purchase_recommendation,PASS,252,0,
+ground truth not present in input/output tables,separation,*,PASS,18,0,
+ground_truth: labelled entities exist,referential,ground_truth,PASS,14,0,

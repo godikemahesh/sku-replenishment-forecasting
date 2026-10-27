@@ -1,0 +1,102 @@
+[
+ {
+  "store_id":"STORE-000001",
+  "store_name":"Visakhapatnam Main Bazaar",
+  "city":"Visakhapatnam",
+  "region":"Andhra Pradesh",
+  "store_format":"supermarket",
+  "open_date":"2017-11-26",
+  "storage_capacity_units":2500,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000002",
+  "store_name":"Nagpur River Front",
+  "city":"Nagpur",
+  "region":"Maharashtra",
+  "store_format":"supermarket",
+  "open_date":"2021-09-09",
+  "storage_capacity_units":1600,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000003",
+  "store_name":"Kochi Central",
+  "city":"Kochi",
+  "region":"Kerala",
+  "store_format":"express",
+  "open_date":"2025-01-23",
+  "storage_capacity_units":450,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000004",
+  "store_name":"Warangal Lake View",
+  "city":"Warangal",
+  "region":"Telangana",
+  "store_format":"express",
+  "open_date":"2021-07-06",
+  "storage_capacity_units":450,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000005",
+  "store_name":"Coimbatore Old Town",
+  "city":"Coimbatore",
+  "region":"Tamil Nadu",
+  "store_format":"express",
+  "open_date":"2018-11-29",
+  "storage_capacity_units":650,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000006",
+  "store_name":"Secunderabad Lake View",
+  "city":"Secunderabad",
+  "region":"Telangana",
+  "store_format":"hypermarket",
+  "open_date":"2025-03-05",
+  "storage_capacity_units":7550,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000007",
+  "store_name":"Hyderabad Airport Road",
+  "city":"Hyderabad",
+  "region":"Telangana",
+  "store_format":"express",
+  "open_date":"2018-08-14",
+  "storage_capacity_units":400,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000008",
+  "store_name":"Visakhapatnam Tech Park",
+  "city":"Visakhapatnam",
+  "region":"Andhra Pradesh",
+  "store_format":"supermarket",
+  "open_date":"2021-07-09",
+  "storage_capacity_units":2400,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000009",
+  "store_name":"Secunderabad Hill Side",
+  "city":"Secunderabad",
+  "region":"Telangana",
+  "store_format":"express",
+  "open_date":"2017-10-22",
+  "storage_capacity_units":500,
+  "lifecycle_state":"active"
+ },
+ {
+  "store_id":"STORE-000010",
+  "store_name":"Warangal Airport Road",
+  "city":"Warangal",
+  "region":"Telangana",
+  "store_format":"supermarket",
+  "open_date":"2018-10-26",
+  "storage_capacity_units":2050,
+  "lifecycle_state":"active"
+ }
+]

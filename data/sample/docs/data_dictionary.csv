@@ -1,0 +1,189 @@
+layer,entity,table,field,type,required,allowed_values,unit,unique,primary_key,validation_rule,description
+input,SKU,sku,sku_id,string,required,,,yes,yes,unique; SKU-######; immutable,Primary key
+input,SKU,sku,sku_name,string,required,,,no,no,non-empty,Display name (synthetic brand + product + size)
+input,SKU,sku,category,enum,required,Staples|Dairy|Beverages|Snacks|Personal Care|Household|Packaged Food|Frozen,,no,no,,Merchandise category; drives seasonality
+input,SKU,sku,brand,string,required,,,no,no,,Synthetic brand name
+input,SKU,sku,unit_cost,decimal,required,,INR,no,no,> 0,Standard cost per unit
+input,SKU,sku,unit_price,decimal,required,,INR,no,no,> unit_cost,Regular shelf price per unit
+input,SKU,sku,launch_date,date,required,,,no,no,ISO date,First day the SKU may be sold
+input,SKU,sku,discontinue_date,date,optional,,,no,no,null or >= launch_date,Last day replenishment is allowed
+input,SKU,sku,lifecycle_state,enum,required,active|new_launch|discontinued,,no,no,discontinued if discontinue_date <= history_end; new_launch if launched in last 90 days,State as of history end
+input,Store,store,store_id,string,required,,,yes,yes,unique; STORE-######,Primary key
+input,Store,store,store_name,string,required,,,no,no,non-empty,Display name
+input,Store,store,city,string,required,,,no,no,,City
+input,Store,store,region,string,required,,,no,no,,State / region
+input,Store,store,store_format,enum,required,hypermarket|supermarket|express,,no,no,,Format; drives size and assortment breadth
+input,Store,store,open_date,date,required,,,no,no,,Store opening date; no sales before it
+input,Store,store,storage_capacity_units,integer,required,,units,no,no,> 0,Max units on hand + on order the store can hold (capacity constraint)
+input,Store,store,lifecycle_state,enum,required,active|new_store,,no,no,,new_store if opened in last 90 days of history
+input,Supplier,supplier,supplier_id,string,required,,,yes,yes,unique; SUP-####,Primary key
+input,Supplier,supplier,supplier_name,string,required,,,no,no,,Synthetic supplier name
+input,Supplier,supplier,region,string,required,,,no,no,,Supplier home region
+input,Supplier,supplier,supplier_type,enum,required,local|regional|national,,no,no,,"local (2-3d), regional (4-6d), national (7-12d) base lead time"
+input,Supplier,supplier,reliability_tier,enum,required,A|B|C,,no,no,,Contracted tier; C suppliers are delayed most often
+input,Supplier,supplier,lifecycle_state,enum,required,active|inactive,,no,no,,Supplier status
+input,SupplierSKU,supplier_sku,supplier_sku_id,string,required,,,yes,yes,unique,Primary key
+input,SupplierSKU,supplier_sku,supplier_id,string,required,,,no,no,FK -> supplier.supplier_id,Supplier reference
+input,SupplierSKU,supplier_sku,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+input,SupplierSKU,supplier_sku,priority,integer,required,,,no,no,"1 = primary, 2 = backup",Sourcing priority
+input,SupplierSKU,supplier_sku,pack_size_units,integer,required,,units,no,no,> 0,Orders must be a multiple of this
+input,SupplierSKU,supplier_sku,moq_units,integer,required,,units,no,no,> 0 and multiple of pack_size_units,Minimum order quantity
+input,SupplierSKU,supplier_sku,unit_cost,decimal,required,,INR,no,no,> 0,Purchase cost per unit from this supplier
+input,SupplierSKU,supplier_sku,nominal_lead_time_days,integer,required,,days,no,no,>= 1,Contracted lead time
+input,SupplierSKU,supplier_sku,effective_from,date,required,,,no,no,,Contract start
+input,SupplierSKU,supplier_sku,effective_to,date,optional,,,no,no,null or >= effective_from,Contract end (null = open-ended)
+input,SupplierSKU,supplier_sku,is_active,boolean,required,,,no,no,,Contract active on the recommendation date
+input,SKUStoreMatrix,sku_store_matrix,sku_id,string,required,,,no,yes,FK -> sku.sku_id,SKU reference
+input,SKUStoreMatrix,sku_store_matrix,store_id,string,required,,,no,yes,FK -> store.store_id,Store reference
+input,SKUStoreMatrix,sku_store_matrix,assortment_status,enum,required,ranged|phase_out|delisted|not_ranged,,no,no,"ranged -> phase_out (SKU discontinued, stock remains) -> delisted (stock sold through)",Assortment lifecycle
+input,SKUStoreMatrix,sku_store_matrix,ranged_from,date,optional,,,no,no,null iff not_ranged; >= launch_date and >= store open_date,First sellable day
+input,SKUStoreMatrix,sku_store_matrix,ranged_to,date,optional,,,no,no,set only when delisted,Last sellable day
+input,SalesHistory,sales_history,sale_id,string,required,,,yes,yes,SALE-<store_id>-<sku_id>-<yyyymmdd>,Primary key
+input,SalesHistory,sales_history,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+input,SalesHistory,sales_history,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+input,SalesHistory,sales_history,sale_date,date,required,,,no,no,ranged_from <= sale_date <= history_end,Business day
+input,SalesHistory,sales_history,day_of_week,enum,required,Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday,,no,no,,Derived from sale_date
+input,SalesHistory,sales_history,units_sold,integer,required,,units,no,no,>= 0; = inventory_snapshot.units_sold,OBSERVED sales. Censored (understates demand) when stockout_flag is true
+input,SalesHistory,sales_history,unit_price_paid,decimal,required,,INR,no,no,unit_price x (1 - promo_discount_pct),Average selling price
+input,SalesHistory,sales_history,promotion_flag,boolean,required,,,no,no,,Chain promotion running at this store
+input,SalesHistory,sales_history,promo_discount_pct,decimal,required,,fraction,no,no,"0 when no promotion, else 0.10-0.30",Promotion discount
+input,SalesHistory,sales_history,availability_status,enum,required,in_stock|sold_out_during_day|out_of_stock_all_day,,no,no,out_of_stock_all_day if opening+receipts = 0; sold_out_during_day if closing = 0; else in_stock,Separates stockouts from genuine zero demand
+input,SalesHistory,sales_history,stockout_flag,boolean,required,,,no,no,availability_status != in_stock,Sales may be censored by availability - do NOT read as zero demand
+input,InventorySnapshot,inventory_snapshot,inventory_snapshot_id,string,required,,,yes,yes,INV-<store_id>-<sku_id>-<yyyymmdd>,Primary key
+input,InventorySnapshot,inventory_snapshot,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+input,InventorySnapshot,inventory_snapshot,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+input,InventorySnapshot,inventory_snapshot,snapshot_date,date,required,,,no,no,,Business day
+input,InventorySnapshot,inventory_snapshot,opening_on_hand_units,integer,required,,units,no,no,>= 0; = previous day closing,Start-of-day stock
+input,InventorySnapshot,inventory_snapshot,receipts_units,integer,required,,units,no,no,>= 0; = sum(purchase_order received that day),Goods received
+input,InventorySnapshot,inventory_snapshot,units_sold,integer,required,,units,no,no,>= 0,Units sold
+input,InventorySnapshot,inventory_snapshot,adjustment_units,integer,required,,units,no,no,<= 0 (shrinkage / damage),Stock adjustment
+input,InventorySnapshot,inventory_snapshot,closing_on_hand_units,integer,required,,units,no,no,= opening + receipts - sold + adjustment; >= 0,End-of-day stock
+input,InventorySnapshot,inventory_snapshot,on_order_units,integer,required,,units,no,no,= sum(open purchase_order qty) at end of day,Inbound pipeline
+input,InventorySnapshot,inventory_snapshot,stockout_flag,boolean,required,,,no,no,closing_on_hand_units = 0,Shelf empty at some point in the day
+input,PurchaseOrder,purchase_order,po_id,string,required,,,yes,yes,"PO-<order year>-<counter, zero-padded to 6 digits; 7 once a year exceeds 999,999 orders>",Primary key
+input,PurchaseOrder,purchase_order,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+input,PurchaseOrder,purchase_order,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+input,PurchaseOrder,purchase_order,supplier_id,string,required,,,no,no,FK -> supplier.supplier_id,Supplier reference
+input,PurchaseOrder,purchase_order,supplier_sku_id,string,required,,,no,no,FK -> supplier_sku,Contract used
+input,PurchaseOrder,purchase_order,order_reason,enum,required,replenishment|launch_allocation,,no,no,,launch_allocation = first fill of a new SKU/store
+input,PurchaseOrder,purchase_order,order_date,date,required,,,no,no,,Date the order was placed
+input,PurchaseOrder,purchase_order,order_qty_units,integer,required,,units,no,no,> 0; multiple of pack size; >= MOQ,Ordered units
+input,PurchaseOrder,purchase_order,order_value,decimal,required,,INR,no,no,order_qty_units x supplier_sku.unit_cost,Order value
+input,PurchaseOrder,purchase_order,expected_receipt_date,date,required,,,no,no,order_date + nominal_lead_time_days,Promised date
+input,PurchaseOrder,purchase_order,actual_receipt_date,date,optional,,,no,no,null iff po_status = open; >= order_date,Delivery date
+input,PurchaseOrder,purchase_order,po_status,enum,required,open|received,,no,no,,Current status (derived from latest event)
+input,PurchaseOrderEvent,purchase_order_event,event_id,string,required,,,yes,yes,<po_id>-EV<n>,Primary key
+input,PurchaseOrderEvent,purchase_order_event,po_id,string,required,,,no,no,FK -> purchase_order.po_id,Order reference
+input,PurchaseOrderEvent,purchase_order_event,event_type,enum,required,CREATED|DELAYED|RECEIVED,,no,no,,Lifecycle transition
+input,PurchaseOrderEvent,purchase_order_event,event_date,date,required,,,no,no,non-decreasing within a po_id,When the transition happened
+input,PurchaseOrderEvent,purchase_order_event,quantity_units,integer,required,,units,no,no,>= 0,Units affected
+input,LeadTimeObservation,lead_time_observation,lead_time_observation_id,string,required,,,yes,yes,LTO-<po number>,Primary key
+input,LeadTimeObservation,lead_time_observation,po_id,string,required,,,yes,no,FK -> purchase_order.po_id,Order the observation came from
+input,LeadTimeObservation,lead_time_observation,supplier_id,string,required,,,no,no,FK -> supplier.supplier_id,Supplier reference
+input,LeadTimeObservation,lead_time_observation,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+input,LeadTimeObservation,lead_time_observation,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+input,LeadTimeObservation,lead_time_observation,order_date,date,required,,,no,no,,Order date
+input,LeadTimeObservation,lead_time_observation,receipt_date,date,required,,,no,no,= order_date + lead_time_days,Recorded receipt date
+input,LeadTimeObservation,lead_time_observation,lead_time_days,integer,required,,days,no,no,>= 0 (negative values are invalid and must be quarantined),Observed lead time
+input,LeadTimeObservation,lead_time_observation,nominal_lead_time_days,integer,required,,days,no,no,,Contracted lead time at order time
+input,LeadTimeObservation,lead_time_observation,delay_days,integer,required,,days,no,no,= lead_time_days - nominal_lead_time_days,Lateness (negative = early)
+output,Forecast,forecast,forecast_id,string,required,,,yes,yes,FC-<store_id>-<sku_id>-<yyyy-mm of horizon start>,Primary key
+output,Forecast,forecast,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+output,Forecast,forecast,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+output,Forecast,forecast,forecast_type,enum,required,backtest|production,,no,no,,backtest (evaluated on holdout) or production
+output,Forecast,forecast,forecast_month,string,required,,,no,no,YYYY-MM,Month of horizon start
+output,Forecast,forecast,forecast_origin_date,date,required,,,no,no,,Last date of information available to the model
+output,Forecast,forecast,training_window_start_date,date,required,,,no,no,,First training day
+output,Forecast,forecast,training_window_end_date,date,required,,,no,no,<= forecast_origin_date (else future leakage),Last training day
+output,Forecast,forecast,horizon_start_date,date,required,,,no,no,= origin + 1,First forecast day
+output,Forecast,forecast,horizon_end_date,date,required,,,no,no,>= horizon_start_date,Last forecast day
+output,Forecast,forecast,horizon_days,integer,required,,days,no,no,,Horizon length
+output,Forecast,forecast,method,enum,required,censored_ewma_dow|croston_sba|new_item_shrinkage|censored_prior|zero_demand,,no,no,,Model chosen by demand class
+output,Forecast,forecast,demand_class,enum,required,smooth|erratic|intermittent|lumpy|new_item|no_clean_history,,no,no,,Syntetos-Boylan class from clean (uncensored) history
+output,Forecast,forecast,train_days_used,integer,required,,days,no,no,,Clean days used to fit
+output,Forecast,forecast,stockout_days_excluded,integer,required,,days,no,no,= stockout days in training window,Censored days excluded
+output,Forecast,forecast,promo_days_excluded,integer,required,,days,no,no,,Promotion days excluded from the baseline
+output,Forecast,forecast,seasonal_index,decimal,required,,,no,no,0.6-1.6; 1.0 when target month not in training data,Category month index
+output,Forecast,forecast,predicted_daily_units,decimal,required,,units/day,no,no,>= 0,Mean daily demand
+output,Forecast,forecast,predicted_daily_sd_units,decimal,required,,units/day,no,no,>= 0,Daily demand standard deviation
+output,Forecast,forecast,predicted_horizon_units,decimal,required,,units,no,no,>= 0,Total demand over horizon (day-of-week weighted)
+output,ReorderPolicy,reorder_policy,reorder_policy_id,string,required,,,yes,yes,RP-<store_id>-<sku_id>-<yyyy-mm>,Primary key
+output,ReorderPolicy,reorder_policy,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+output,ReorderPolicy,reorder_policy,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+output,ReorderPolicy,reorder_policy,forecast_id,string,required,,,no,no,FK -> forecast (production),Demand input
+output,ReorderPolicy,reorder_policy,supplier_sku_id,string,optional,,,no,no,FK -> supplier_sku; null if no active contract,Contract chosen
+output,ReorderPolicy,reorder_policy,effective_from,date,required,,,no,no,,Policy start
+output,ReorderPolicy,reorder_policy,effective_to,date,required,,,no,no,>= effective_from,Policy end
+output,ReorderPolicy,reorder_policy,abc_class,enum,required,A|B|C,,no,no,,Store-level revenue class (80/15/5)
+output,ReorderPolicy,reorder_policy,service_level_target,decimal,required,,,no,no,"A 0.98, B 0.95, C 0.90",Cycle service level
+output,ReorderPolicy,reorder_policy,z_value,decimal,required,,,no,no,,Normal quantile of service level
+output,ReorderPolicy,reorder_policy,review_period_days,integer,required,,days,no,no,,R
+output,ReorderPolicy,reorder_policy,lead_time_source,enum,required,supplier_sku_history|supplier_history|nominal_default|none,,no,no,,Which history the lead-time estimate came from
+output,ReorderPolicy,reorder_policy,lead_time_mean_days,decimal,required,,days,no,no,>= 0,L
+output,ReorderPolicy,reorder_policy,lead_time_sd_days,decimal,required,,days,no,no,>= 0,sigma_L
+output,ReorderPolicy,reorder_policy,lead_time_obs_used,integer,required,,,no,no,,Valid observations used
+output,ReorderPolicy,reorder_policy,lead_time_obs_rejected,integer,required,,,no,no,,Invalid (negative) observations quarantined
+output,ReorderPolicy,reorder_policy,demand_daily_units,decimal,required,,units/day,no,no,,d
+output,ReorderPolicy,reorder_policy,demand_daily_sd_units,decimal,required,,units/day,no,no,,sigma_d
+output,ReorderPolicy,reorder_policy,safety_stock_units,integer,required,,units,no,no,ceil(z*sqrt((L+R)*sd^2 + d^2*sL^2)),Safety stock
+output,ReorderPolicy,reorder_policy,reorder_point_units,integer,required,,units,no,no,ceil(d*L) + SS,Order when inventory position <= this
+output,ReorderPolicy,reorder_policy,order_up_to_units,integer,required,,units,no,no,ceil(d*(L+R)) + SS,Target inventory position
+output,ReorderPolicy,reorder_policy,policy_status,enum,required,active|blocked_discontinued|blocked_no_active_supplier,,no,no,,Whether ordering is allowed
+output,PurchaseRecommendation,purchase_recommendation,purchase_recommendation_id,string,required,,,yes,yes,PO-2026-######,Primary key
+output,PurchaseRecommendation,purchase_recommendation,reorder_policy_id,string,required,,,no,no,FK -> reorder_policy,Policy applied
+output,PurchaseRecommendation,purchase_recommendation,forecast_id,string,required,,,no,no,FK -> forecast,Forecast used
+output,PurchaseRecommendation,purchase_recommendation,store_id,string,required,,,no,no,FK -> store.store_id,Store reference
+output,PurchaseRecommendation,purchase_recommendation,sku_id,string,required,,,no,no,FK -> sku.sku_id,SKU reference
+output,PurchaseRecommendation,purchase_recommendation,supplier_id,string,optional,,,no,no,FK -> supplier,Supplier to order from
+output,PurchaseRecommendation,purchase_recommendation,supplier_sku_id,string,optional,,,no,no,FK -> supplier_sku,Contract to order on
+output,PurchaseRecommendation,purchase_recommendation,recommendation_date,date,required,,,no,no,,Decision date
+output,PurchaseRecommendation,purchase_recommendation,on_hand_units,integer,required,,units,no,no,= snapshot closing on history end,Stock on hand
+output,PurchaseRecommendation,purchase_recommendation,on_order_units,integer,required,,units,no,no,= snapshot on_order on history end,Open POs
+output,PurchaseRecommendation,purchase_recommendation,inventory_position_units,integer,required,,units,no,no,on_hand + on_order,IP
+output,PurchaseRecommendation,purchase_recommendation,reorder_point_units,integer,required,,units,no,no,,From policy
+output,PurchaseRecommendation,purchase_recommendation,order_up_to_units,integer,required,,units,no,no,,From policy
+output,PurchaseRecommendation,purchase_recommendation,days_of_cover,decimal,required,,days,no,no,IP / demand_daily_units,Priority for capacity allocation
+output,PurchaseRecommendation,purchase_recommendation,reorder_triggered,boolean,required,,,no,no,IP <= reorder point,Whether the policy fires
+output,PurchaseRecommendation,purchase_recommendation,raw_need_units,integer,required,,units,no,no,"max(0, order_up_to - IP) when triggered",Unconstrained need
+output,PurchaseRecommendation,purchase_recommendation,moq_units,integer,optional,,units,no,no,,MOQ applied
+output,PurchaseRecommendation,purchase_recommendation,pack_size_units,integer,optional,,units,no,no,,Pack size applied
+output,PurchaseRecommendation,purchase_recommendation,qty_after_moq_pack_units,integer,required,,units,no,no,"ceil(max(need, MOQ)/pack)*pack",Before capacity
+output,PurchaseRecommendation,purchase_recommendation,capacity_room_units,integer,required,,units,no,no,store room remaining before this line,Capacity check input
+output,PurchaseRecommendation,purchase_recommendation,recommended_order_qty_units,integer,required,,units,no,no,">= 0; if > 0: multiple of pack, >= MOQ, fits capacity",Final quantity
+output,PurchaseRecommendation,purchase_recommendation,order_value,decimal,required,,INR,no,no,,qty x unit_cost
+output,PurchaseRecommendation,purchase_recommendation,expected_receipt_date,date,optional,,,no,no,recommendation_date + ceil(L) when qty > 0,ETA
+output,PurchaseRecommendation,purchase_recommendation,recommendation_status,enum,required,order_recommended|capacity_reduced|capacity_exception|no_order_needed|blocked_discontinued|blocked_no_active_supplier,,no,no,,Decision
+output,PurchaseRecommendation,purchase_recommendation,manual_review_flag,boolean,required,,,no,no,,"Planner should review (new item, no clean history, LT fallback)"
+output,PurchaseRecommendation,purchase_recommendation,rule_trace,string,required,,,no,no,,Ordered list of rules applied - full decision traceability
+output,AuditException,audit_exception,exception_id,string,required,,,yes,yes,EXC-########,Primary key
+output,AuditException,audit_exception,exception_category,enum,required,data_defect|operational,,no,no,,data_defect = invalid record; operational = decision needing attention
+output,AuditException,audit_exception,rule_id,string,required,,,no,no,,Audit rule that fired (see README)
+output,AuditException,audit_exception,entity_type,string,required,,,no,no,,Table of the offending record
+output,AuditException,audit_exception,entity_id,string,required,,,no,no,,Primary key of the offending record
+output,AuditException,audit_exception,store_id,string,optional,,,no,no,,"Store, when applicable"
+output,AuditException,audit_exception,sku_id,string,optional,,,no,no,,"SKU, when applicable"
+output,AuditException,audit_exception,severity,enum,required,high|medium|low,,no,no,,Impact
+output,AuditException,audit_exception,action,enum,required,quarantine|block|manual_review|expedite,,no,no,,What the workflow does with the record
+output,AuditException,audit_exception,detail,string,required,,,no,no,,Human-readable explanation with values
+ground_truth,GroundTruth,ground_truth,ground_truth_id,string,required,,,yes,yes,GT-########,Primary key
+ground_truth,GroundTruth,ground_truth,entity_type,string,required,,,no,no,,Table containing the labelled record
+ground_truth,GroundTruth,ground_truth,entity_id,string,required,,,no,no,,Primary key of the labelled record
+ground_truth,GroundTruth,ground_truth,issue_type,enum,required,stockout_censored_demand|negative_lead_time|forecast_future_leakage|forecast_stockout_as_zero_demand|reorder_qty_ignores_pack_size|discontinued_sku_recommended,,no,no,,Anomaly label
+ground_truth,GroundTruth,ground_truth,origin,enum,required,natural|injected,,no,no,,natural = arises from simulation; injected = deliberate defect
+ground_truth,GroundTruth,ground_truth,expected_behavior,string,required,,,no,no,,What a correct system must do
+ground_truth,GroundTruth,ground_truth,observed_value,decimal,optional,,,no,no,,Value present in the dataset
+ground_truth,GroundTruth,ground_truth,expected_value,decimal,optional,,,no,no,,"Correct value (e.g. latent demand, clean quantity)"
+ground_truth,GroundTruth,ground_truth,severity,enum,required,high|medium|low,,no,no,,Impact
+ground_truth,DemandActual,demand_actuals,store_id,string,required,,,no,yes,FK -> store.store_id,Store reference
+ground_truth,DemandActual,demand_actuals,sku_id,string,required,,,no,yes,FK -> sku.sku_id,SKU reference
+ground_truth,DemandActual,demand_actuals,demand_date,date,required,,,no,yes,,Day in forecast month
+ground_truth,DemandActual,demand_actuals,true_demand_units,integer,required,,units,no,no,>= 0,Latent demand
+ground_truth,DemandProfile,demand_profile,store_id,string,required,,,no,yes,FK -> store.store_id,Store reference
+ground_truth,DemandProfile,demand_profile,sku_id,string,required,,,no,yes,FK -> sku.sku_id,SKU reference
+ground_truth,DemandProfile,demand_profile,base_daily_rate,decimal,required,,units/day,no,no,,Underlying rate at history end before seasonality
+ground_truth,DemandProfile,demand_profile,nb_dispersion_k,decimal,required,,,no,no,,Negative-binomial dispersion (low = lumpy)
+ground_truth,DemandProfile,demand_profile,true_demand_class,enum,required,smooth|erratic|intermittent|lumpy|no_demand,,no,no,,Class from latent history demand
+ground_truth,DemandProfile,demand_profile,mean_true_daily_demand,decimal,required,,units/day,no,no,,Mean latent demand over sellable days
+ground_truth,SupplierDisruption,supplier_disruption,supplier_id,string,required,,,no,yes,FK -> supplier.supplier_id,Supplier reference
+ground_truth,SupplierDisruption,supplier_disruption,start_date,date,required,,,no,yes,,Start
+ground_truth,SupplierDisruption,supplier_disruption,end_date,date,required,,,no,no,,End
